@@ -201,3 +201,5 @@ $scope.calPrincipalPortion = function(balance) {
 	return $scope.getPaymentPerPeriod() - $scope.calInterestPortion(balance)
 };
 }]);
+
+
