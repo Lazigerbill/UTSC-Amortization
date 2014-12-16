@@ -1,7 +1,14 @@
 
-<div class="container"><div class="row">
-
-</div>
+<div class="container">
+	<div class="row">
+		<div class="page-header">
+			<h1>
+				<i class="fa fa-calculator"></i>
+				Mortgage Calculator
+				<small>a UTSC demonstration</small>
+			</h1>
+		</div>
+	</div>
 <br>
 <h3>Calculating the Payment Amount per Period</h3>
 <%= image_tag 'Amortization-Formular.gif' %> <br>
@@ -22,7 +29,7 @@
 	<li>p = number of payment periods per year</li>
 </ul>
 
-<h1>UTSC Mortgage Calculator</h1>
+
 <%= form_tag do %>
 <div class="form-group">
 	<%= label_tag :loan_amount %>
@@ -91,13 +98,36 @@
 	<!-- 	<button class="btn btn-default" ng-click="createTable()">Calculate</button> -->
 
 
-	<h1>Loan Summary</h1>
-	<p>Number of payments: {{getNumberOfPayments()}}</p>
-	<p>Rate (per period):{{getRatePerPeriod()|number:6}}</p>
-	<p>Payment: {{getPaymentPerPeriod()|currency:$:2}}</p>
-	<p>Total payment:{{totalPayment|currency:$:2}}</p>
-	<p>Total interest: {{totalInterest|currency:$:2}}</p>
-	<p>Last payment date: {{paymentDate| date: 'MM/dd/yyyy'}}</p>
+	<h1>
+		<i class="fa fa-clipboard"></i>
+		Mortgage Summary
+	</h1>
+	<table class="table table-hover">
+			<tr>
+				<th>Number of payments:</th>
+				<td><input type="text" value="{{getNumberOfPayments()}}", readonly="true"></td>
+			</tr>
+			<tr>
+				<th>Rate (per period):</th>
+				<td><input type="text" value="{{getRatePerPeriod()|number:6}}", readonly="true"></td>
+			</tr>
+			<tr>
+				<th>Payment:</th>
+				<td><input type="text" value="{{getPaymentPerPeriod()|currency:$:2}}", readonly="true"></td>
+			</tr>
+			<tr>
+				<th>Total payment:</th>
+				<td><input type="text" value="{{totalPayment|currency:$:2}}", readonly="true"></td>
+			</tr>
+			<tr>
+				<th>Total interest:</th>
+				<td><input type="text" value="{{totalInterest|currency:$:2}}", readonly="true"></td>
+			</tr>
+			<tr>
+				<th>Last payment date:</th>
+				<td><input type="text" value="{{paymentDate| date: 'MM/dd/yyyy'}}", readonly="true"></td>
+			</tr>
+	</table>
 
 	<div id="pie" style="min-width: 300px; height: 320px; max-width: 500px"></div>
 
