@@ -1,5 +1,5 @@
 
-<div class="container">
+<div class="container-fluid">
 	<div class="row">
 		<div class="page-header">
 			<h1>
@@ -9,91 +9,77 @@
 			</h1>
 		</div>
 	</div>
-<br>
-<h3>Calculating the Payment Amount per Period</h3>
-<%= image_tag 'Amortization-Formular.gif' %> <br>
-<ul>
-	<li>A = payment Amount per period</li>
-	<li>P = initial Principal</li>
-	<li>r = interest rate per period</li>
-	<li>n = total number of payments</li>
-</ul>
 
-<p>Canadian Mortgage compounds semi-annually!!!</p>
-<h3>Calculating the Rate Per Period</h3>
-<%= image_tag 'cal_rate.gif' %>
-<ul>
-	<li>r = rate per payment period</li>
-	<li>i = nominal annual interest rate</li>
-	<li>n = number of compounding periods per year</li>
-	<li>p = number of payment periods per year</li>
-</ul>
+	<div class="well col-md-4">
+		<h3>
+			<i class="fa fa-pencil-square-o"></i>
+			Please fill in here	
+		</h3>
 
-<div class="well col-md-4">
-
-	<div class="form-group">
-		<%= label_tag :loan_amount %>
-		<div class="input-group">
-			<span class="input-group-addon">$</span>
-			<%= text_field_tag :loan_amount, 20000, 'ng-model'=>'loanAmount', :class=>'form-control' %> 
-		</div>
-	</div>
-
-	<div class="form-group">
-		<%= label_tag :annual_interest_rate %>
-		<div class="input-group">
-			<%= text_field_tag :annual_interest_rate, nil, 'ng-model'=>'annualInterestRate', :class=>'form-control' %> 
-			<span class="input-group-addon">%</span>
-		</div>
-		<%= range_field_tag :annual_interest_rate, nil, 'ng-model'=>'annualInterestRate', 'ng-change'=>'createTable()', :min=>0, :max=>20, :step=>0.01 %>
-	</div>
-
-	<p>Usually, the interest rate that you enter into an amortization calculator is the nominal annual rate. However, when creating an amortization schedule, it is the interest rate per period that you use in the calculations, labeled rate per period in the above spreadsheet.</p>
-
-	<div class="form-group">
-		<%= label_tag :term_of_loan %>
-		<div class="input-group">
-			<%= text_field_tag :term_of_loan, nil, 'ng-model'=>'termOfLoan', :class=>'form-control', :placeholder=>'Please enter number of years' %>
-			<span class="input-group-addon">Years</span>
-		</div>	
-		<%= range_field_tag :term_of_loan, nil, 'ng-model'=>'termOfLoan', 'ng-change'=>'createTable()', :min=>1, :max=>50, :step=>1 %>
-	</div>
-
-	<div class="form-group">
-		<%= label_tag :first_payment_date %>
-		<%= date_field_tag :first_payment_date, nil, 'ng-model'=>'firstPaymentDate', :class=>'form-control' %>
-	</div>
-
-	<div class="form-group">
-			<i class="fa fa-info-circle has-popover" data-container="body" data-toggle="popover" data-placement="top" title="Payment Frequency" data-content="Basic amortization calculators usually assume that the payment frequency matches the compounding period. In that case, the rate per period is simply the nominal annual interest rate divided by the number of periods per year. When the compound period and payment period are different (as in Canadian mortgages), a more general formula is needed."></i>
-			<%= label_tag :payment_frequency %> <br>
-			<%= radio_button_tag(:payment_frequency, 24, nil,'ng-model'=>'paymentFrequency', 'ng-change'=>'createTable()') %>
-			<%= label_tag(:payment_frequency, "Bi-weekly") %>
-			<%= radio_button_tag(:payment_frequency, 12, nil, 'ng-model'=>'paymentFrequency', 'ng-change'=>'createTable()') %>
-			<%= label_tag(:payment_frequency, "Monthly") %>
-			<%= radio_button_tag(:payment_frequency, 6, nil, 'ng-model'=>'paymentFrequency', 'ng-change'=>'createTable()') %>
-			<%= label_tag(:payment_frequency, "Semi-annually") %>
-			<%= radio_button_tag(:payment_frequency, 1, nil, 'ng-model'=>'paymentFrequency', 'ng-change'=>'createTable()') %>
-			<%= label_tag(:payment_frequency, "Annually") %>
-			<br>
-
+		<div class="form-group">
+			<%= label_tag :loan_amount %>
+			<div class="input-group">
+				<span class="input-group-addon">$</span>
+				<%= text_field_tag :loan_amount, 20000, 'ng-model'=>'loanAmount', :class=>'form-control', :placeholder=>'Please enter mortgage amount' %> 
+			</div>
 		</div>
 
 		<div class="form-group">
-			<i class="fa fa-info-circle has-popover" data-container="body" data-toggle="popover" data-placement="top" title="Compound Period" data-content="Basic amortization calculators usually assume that the payment frequency matches the compounding period. In that case, the rate per period is simply the nominal annual interest rate divided by the number of periods per year. When the compound period and payment period are different (as in Canadian mortgages), a more general formula is needed."></i>
-			
-			<%= label_tag :compound_period %> <br>
-			<%= radio_button_tag(:compound_period, 24, nil,'ng-model'=>'compoundPeriod', 'ng-change'=>'createTable()') %>
-			<%= label_tag(:compound_period, "Bi-weekly") %>
-			<%= radio_button_tag(:compound_period, 12, nil, 'ng-model'=>'compoundPeriod', 'ng-change'=>'createTable()') %>
-			<%= label_tag(:compound_period, "Monthly") %>
-			<%= radio_button_tag(:compound_period, 6, nil, 'ng-model'=>'compoundPeriod', 'ng-change'=>'createTable()') %>
-			<%= label_tag(:compound_period, "Semi-annually") %>
-			<%= radio_button_tag(:compound_period, 1, nil, 'ng-model'=>'compoundPeriod', 'ng-change'=>'createTable()') %>
-			<%= label_tag(:compound_period, "Annually") %>
-		</div> 
+			<%= label_tag :annual_interest_rate %>
+			<div class="input-group">
+				<%= text_field_tag :annual_interest_rate, nil, 'ng-model'=>'annualInterestRate', :class=>'form-control', :placeholder=>'Please enter nominal annual rate' %> 
+				<span class="input-group-addon">%</span>
+			</div>
+			<%= range_field_tag :annual_interest_rate, nil, 'ng-model'=>'annualInterestRate', 'ng-change'=>'createTable()', :min=>0, :max=>20, :step=>0.01 %>
+		</div>
 
-	</div> <!-- well -->
+		<div class="form-group">
+			<%= label_tag :term_of_loan %>
+			<div class="input-group">
+				<%= text_field_tag :term_of_loan, nil, 'ng-model'=>'termOfLoan', :class=>'form-control', :placeholder=>'Please enter number of years' %>
+				<span class="input-group-addon">Years</span>
+			</div>	
+			<%= range_field_tag :term_of_loan, nil, 'ng-model'=>'termOfLoan', 'ng-change'=>'createTable()', :min=>1, :max=>50, :step=>1 %>
+		</div>
+
+		<div class="form-group">
+			<%= label_tag :first_payment_date %>
+			<%= date_field_tag :first_payment_date, nil, 'ng-model'=>'firstPaymentDate', :class=>'form-control' %>
+		</div>
+
+				<div class="row">
+					<div class="col-md-6">				
+						<div class="form-group">
+							<i class="fa fa-info-circle has-popover" data-container="body" data-toggle="popover" data-placement="top" title="Payment Frequency" data-content="Basic amortization calculators usually assume that the payment frequency matches the compounding period. In that case, the rate per period is simply the nominal annual interest rate divided by the number of periods per year. When the compound period and payment period are different (as in Canadian mortgages), a more general formula is needed."></i>
+							<%= label_tag :payment_frequency %> <br>
+							<%= radio_button_tag(:payment_frequency, 24, nil,'ng-model'=>'paymentFrequency', 'ng-change'=>'createTable()') %>
+							<%= label_tag(:payment_frequency, "Bi-weekly") %> <br>
+							<%= radio_button_tag(:payment_frequency, 12, nil, 'ng-model'=>'paymentFrequency', 'ng-change'=>'createTable()') %>
+							<%= label_tag(:payment_frequency, "Monthly") %> <br>
+							<%= radio_button_tag(:payment_frequency, 6, nil, 'ng-model'=>'paymentFrequency', 'ng-change'=>'createTable()') %>
+							<%= label_tag(:payment_frequency, "Semi-annually") %> <br>
+							<%= radio_button_tag(:payment_frequency, 1, nil, 'ng-model'=>'paymentFrequency', 'ng-change'=>'createTable()') %>
+							<%= label_tag(:payment_frequency, "Annually") %>
+						</div>
+					</div>
+				
+					<div class="col-md-6">				
+						<div class="form-group">
+							<i class="fa fa-info-circle has-popover" data-container="body" data-toggle="popover" data-placement="top" title="Compound Period" data-content="Basic amortization calculators usually assume that the payment frequency matches the compounding period. In that case, the rate per period is simply the nominal annual interest rate divided by the number of periods per year. When the compound period and payment period are different (as in Canadian mortgages), a more general formula is needed."></i>
+							
+							<%= label_tag :compound_period %> <br>
+							<%= radio_button_tag(:compound_period, 24, nil,'ng-model'=>'compoundPeriod', 'ng-change'=>'createTable()') %>
+							<%= label_tag(:compound_period, "Bi-weekly") %> <br>
+							<%= radio_button_tag(:compound_period, 12, nil, 'ng-model'=>'compoundPeriod', 'ng-change'=>'createTable()') %>
+							<%= label_tag(:compound_period, "Monthly") %> <br>
+							<%= radio_button_tag(:compound_period, 6, nil, 'ng-model'=>'compoundPeriod', 'ng-change'=>'createTable()') %>
+							<%= label_tag(:compound_period, "Semi-annually") %> <br>
+							<%= radio_button_tag(:compound_period, 1, nil, 'ng-model'=>'compoundPeriod', 'ng-change'=>'createTable()') %>
+							<%= label_tag(:compound_period, "Annually") %> 
+						</div> 
+					</div>
+				</div> <!-- row -->
+		</div> <!-- well -->
 
 
 
@@ -103,21 +89,21 @@
 
 	<div class="row">	
 		<div class="col-md-4">
-	<h3>
-		<i class="fa fa-clipboard"></i>
-		Mortgage Summary
-	</h3>
+			<h3>
+				<i class="fa fa-clipboard"></i>
+				Mortgage Summary
+			</h3>
 			<table class="table table-hover">
 					<tr>
 						<th>Number of payments:</th>
 						<td><input type="text" value="{{getNumberOfPayments()}}", readonly="true"></td>
 					</tr>
 					<tr>
-						<th>Rate (per period):</th>
+						<th><i class="fa fa-info-circle paymentCalc" data-container="body" data-toggle="popover" data-placement="top"></i>Rate (per period):</th>
 						<td><input type="text" value="{{getRatePerPeriod()|number:6}}", readonly="true"></td>
 					</tr>
 					<tr>
-						<th>Payment:</th>
+						<th><i class="fa fa-info-circle interestCalc" data-container="body" data-toggle="popover" data-placement="top"></i>Payment Amount:</th>
 						<td><input type="text" value="{{getPaymentPerPeriod()|currency:$:2}}", readonly="true"></td>
 					</tr>
 					<tr>
