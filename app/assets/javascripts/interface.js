@@ -66,9 +66,6 @@ $(function () {
 			renderTo: 'container',
 			type: 'column',
 		},
-		title: {
-			text: 'Amortization Schedule'
-		},
 		xAxis: {
 			title: {
 				text: 'Payment Period'
