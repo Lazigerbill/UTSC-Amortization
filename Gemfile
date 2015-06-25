@@ -12,4 +12,7 @@ gem 'turbolinks'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'rails_12factor', group: :production
 gem 'spring',        group: :development
-gem 'pg'
+gem 'sqlite3'
+# gem 'pg'
+
+gem "cf-autoconfig", "~> 0.2.1"
